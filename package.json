@@ -1,0 +1,14 @@
+{
+  "name": "circuitsdk_template",
+  "version": "0.0.1",
+  "author": "Roger Urscheler <roger.urscheler@atos.net>",
+  "dependencies": {
+    "@unify/vue-components": "^0.0.x",
+    "bootstrap": "4.2.1",
+    "circuit-sdk": "1.2.5000",
+    "jquery": "3.3.1",
+    "popper.js": "1.14.7",
+    "vue": "2.6.3",
+    "vuejs-datepicker": "^1.5.4"
+  }
+}

@@ -1,0 +1,38 @@
+<div id="app" v-cloak class="d-flex flex-column m-2">
+  <circuit-logon
+    :client="client"
+    @logon="onLogon"
+    @logout="onLogout"
+    title="Conversation Export"
+    description="Export text content of a conversation to a json file">
+  </circuit-logon>
+
+  <div v-if="user">
+
+    <div class="form-group">
+      <label for="convId">Conversation ID</label>
+      <input v-model="convId" class="form-control form-control-sm col-md-6" id="convId">
+    </div>
+    <div class="form-group">
+      <label for="start">Start date (defaults to beginning if not defined)</label>
+      <datepicker v-model="start" class="col-md-3" id="start"></datepicker>
+    </div>
+    <div class="form-group">
+      <label for="end">End date (defaults to now if not defined)</label>
+      <datepicker v-model="end" class="col-md-3" id="end"></datepicker>
+    </div>
+
+    <button type="button" class="btn btn-sm btn-primary" v-on:click="search" v-bind:disabled="state==='SEARCHING'">Search</button>
+
+    <section v-if="state==='SEARCHING'">  
+      <span>Exporting all text content for selected conversation between {{ start.toLocaleDateString() }} and {{ end.toLocaleDateString() }}.</span>
+      <br>
+      <span>{{result.length}} messages found...</span> 
+    </section> 
+
+    <section v-if="state==='DONE'">   
+      <p>Found {{result.length}} text messages on conversation {{convName}} between {{ start.toLocaleDateString() }} and {{ end.toLocaleDateString() }}.</p>
+      <p>File is downloaded to your browser.</p>
+    </section> 
+  </div>
+</div>
